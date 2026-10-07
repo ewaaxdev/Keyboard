@@ -25,8 +25,13 @@ android {
 
     buildTypes {
         release {
-            // Tahap 1: matikan minify agar build simpel dan mudah debug.
-            isMinifyEnabled = false
+            // R8: buang kode/resource tak terpakai agar APK rilis sekecil mungkin.
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     // Kode Java/Kotlin dikompilasi sebagai Java 17 (sesuai JDK di CI).
@@ -42,6 +47,7 @@ android {
     }
 }
 
-// Sengaja kosong: project ini nol dependency pihak ketiga.
+// Hanya untuk unit test lokal (bukan library aplikasi).
 dependencies {
+    testImplementation("junit:junit:4.13.2")
 }

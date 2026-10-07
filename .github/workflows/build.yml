@@ -18,7 +18,8 @@ jobs:
           java-version: "17"
 
       # Rakit APK debug pakai Gradle wrapper bawaan repo.
-      - run: ./gradlew assembleDebug
+      # Urutan: unit test dulu, lalu lint, lalu rakit APK.
+      - run: ./gradlew testDebugUnitTest lintDebug assembleDebug
 
       # Simpan hasil APK supaya bisa diunduh dari halaman Actions.
       - uses: actions/upload-artifact@v5
