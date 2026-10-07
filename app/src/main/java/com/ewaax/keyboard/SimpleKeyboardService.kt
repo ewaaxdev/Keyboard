@@ -1,7 +1,10 @@
 package com.ewaax.keyboard
 
 import android.inputmethodservice.InputMethodService
+import android.os.Handler
+import android.os.Looper
 import android.view.KeyEvent
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -10,18 +13,45 @@ import android.widget.Button
 // keyboard perlu tampil, dan hasilnya dijadikan tampilan keyboard.
 class SimpleKeyboardService : InputMethodService() {
 
-    // false = huruf kecil, true = huruf besar (satu huruf, lalu balik kecil).
+    // Shift satu ketuk ala iPhone: aktif untuk 1 huruf, lalu mati sendiri.
     private var isCaps = false
-    private lateinit var shiftButton: Button
+    private var shiftButton: Button? = null
+
+    // 3 halaman: huruf, angka/simbol, simbol lanjutan.
+    private var pageLetters: View? = null
+    private var pageSymbols: View? = null
+    private var pageMore: View? = null
+
+    // Mesin hapus-berulang saat tombol hapus ditahan.
+    private val deleteHandler = Handler(Looper.getMainLooper())
+    private var deleting = false
+    private val deleteRepeat = object : Runnable {
+        override fun run() {
+            backspace()
+            if (deleting) deleteHandler.postDelayed(this, 50)
+        }
+    }
 
     override fun onCreateInputView(): View {
-        val view = layoutInflater.inflate(R.layout.keyboard_view, null)
+        val view = layoutInflater.inflate(R.layout.keyboard_main, null)
+        pageLetters = view.findViewById(R.id.page_letters)
+        pageSymbols = view.findViewById(R.id.page_symbols)
+        pageMore = view.findViewById(R.id.page_more)
         wireKeys(view)
+        showPage(pageLetters)
         return view
     }
 
-    // Menyusuri semua tombol di layout, lalu memasang aksi kliknya.
-    // Tombol huruf dikenali dari tag 1 huruf, tombol khusus dari id.
+    // Tampilkan 1 halaman, sembunyikan 2 lainnya.
+    private fun showPage(page: View?) {
+        pageLetters?.visibility = if (page == pageLetters) View.VISIBLE else View.GONE
+        pageSymbols?.visibility = if (page == pageSymbols) View.VISIBLE else View.GONE
+        pageMore?.visibility = if (page == pageMore) View.VISIBLE else View.GONE
+    }
+
+    // Menyusuri semua tombol di 3 halaman, lalu memasang aksinya.
+    // Semua tombol dikenali dari tag: huruf/angka/simbol = tag 1 karakter,
+    // tombol khusus = tag kata (shift, space, backspace, enter, to_*).
     private fun wireKeys(root: View) {
         if (root is ViewGroup) {
             for (i in 0 until root.childCount) {
@@ -30,18 +60,24 @@ class SimpleKeyboardService : InputMethodService() {
             return
         }
         if (root !is Button) return
-        when (root.id) {
-            R.id.btn_shift -> {
+        when (val tag = root.tag as? String) {
+            "shift" -> {
                 shiftButton = root
                 root.setOnClickListener { toggleShift() }
             }
-            R.id.btn_space -> root.setOnClickListener { typeText(" ") }
-            R.id.btn_backspace -> root.setOnClickListener { backspace() }
-            R.id.btn_enter -> root.setOnClickListener { pressEnter() }
+            "space" -> root.setOnClickListener { typeText(" ") }
+            "backspace" -> wireBackspace(root)
+            "enter" -> root.setOnClickListener { pressEnter() }
+            "to_symbols" -> root.setOnClickListener { showPage(pageSymbols) }
+            "to_letters" -> root.setOnClickListener { showPage(pageLetters) }
+            "to_more" -> root.setOnClickListener { showPage(pageMore) }
             else -> {
-                val tag = root.tag as? String
-                if (tag != null && tag.length == 1 && tag[0].isLetter()) {
-                    root.setOnClickListener { typeLetter(tag) }
+                if (tag != null && tag.length == 1) {
+                    if (tag[0].isLetter()) {
+                        root.setOnClickListener { typeLetter(tag) }
+                    } else {
+                        root.setOnClickListener { typeText(tag) }
+                    }
                 }
             }
         }
@@ -53,7 +89,7 @@ class SimpleKeyboardService : InputMethodService() {
         typeText(text)
         if (isCaps) {
             isCaps = false
-            updateShiftLabel()
+            updateShiftKey()
         }
     }
 
@@ -66,6 +102,26 @@ class SimpleKeyboardService : InputMethodService() {
         currentInputConnection?.deleteSurroundingText(1, 0)
     }
 
+    // Ketuk = hapus 1x. Tahan = hapus terus tiap 50ms sampai dilepas.
+    // onTouch mengembalikan false agar ketukan cepat tetap jadi klik biasa.
+    private fun wireBackspace(button: Button) {
+        button.setOnClickListener { backspace() }
+        button.setOnLongClickListener {
+            deleting = true
+            deleteHandler.post(deleteRepeat)
+            true
+        }
+        button.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_UP
+                || event.action == MotionEvent.ACTION_CANCEL
+            ) {
+                deleting = false
+                deleteHandler.removeCallbacks(deleteRepeat)
+            }
+            false
+        }
+    }
+
     // Enter dikirim sebagai event tombol (seperti keyboard fisik),
     // supaya aplikasi tujuan (chat, form) merespons dengan benar.
     private fun pressEnter() {
@@ -76,10 +132,18 @@ class SimpleKeyboardService : InputMethodService() {
 
     private fun toggleShift() {
         isCaps = !isCaps
-        updateShiftLabel()
+        updateShiftKey()
     }
 
-    private fun updateShiftLabel() {
-        shiftButton.text = if (isCaps) "SHIFT" else "shift"
+    // Shift menyala = latar gelap + teks putih, mati = kembali abu-abu.
+    private fun updateShiftKey() {
+        val button = shiftButton ?: return
+        if (isCaps) {
+            button.setBackgroundResource(R.drawable.key_function_active)
+            button.setTextColor(0xFFFFFFFF.toInt())
+        } else {
+            button.setBackgroundResource(R.drawable.key_function)
+            button.setTextColor(0xFF000000.toInt())
+        }
     }
 }

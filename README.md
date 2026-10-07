@@ -1,6 +1,7 @@
 # Keyboard
 
-Keyboard Android super ringan: QWERTY dasar tanpa saran kata,
+Keyboard Android super ringan gaya iPhone: QWERTY, halaman angka/simbol
+(123 dan #+=), shift satu ketuk, hapus-tahan. Tanpa saran kata,
 tanpa kamus, tanpa internet, tanpa library pihak ketiga.
 
 ## Cara dapat APK
