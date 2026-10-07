@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Layar pengaturan: 2 langkah + 2 tombol, tanpa gambar atau gaya khusus. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Langkah 1: aktifkan keyboard ini di pengaturan sistem."
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btn_open_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buka pengaturan keyboard" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Langkah 2: pilih keyboard ini sebagai keyboard aktif."
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btn_show_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pilih keyboard" />
+</LinearLayout>

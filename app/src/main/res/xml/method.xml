@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Info keyboard untuk sistem: 1 varian bahasa Inggris saja. -->
+<input-method xmlns:android="http://schemas.android.com/apk/res/android">
+    <subtype
+        android:imeSubtypeLocale="en"
+        android:imeSubtypeMode="keyboard" />
+</input-method>
