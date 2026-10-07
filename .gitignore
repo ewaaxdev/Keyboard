@@ -1,0 +1,8 @@
+# File build yang tidak perlu masuk repo.
+.gradle/
+build/
+app/build/
+local.properties
+*.iml
+.idea/
+.DS_Store
