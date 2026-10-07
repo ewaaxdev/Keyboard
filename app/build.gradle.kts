@@ -1,6 +1,8 @@
+// Kotlin TIDAK dipasang sebagai plugin: AGP 9 sudah menyediakannya
+// (built-in). Memasangnya lagi menyebabkan error "extension 'kotlin'
+// already registered".
 plugins {
     id("com.android.application")
-    kotlin("android")
 }
 
 // Blok android: semua pengaturan khusus Android untuk modul app.
@@ -32,8 +34,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "17"
+    // Atur versi Java untuk compiler Kotlin bawaan AGP.
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+        }
     }
 }
 
