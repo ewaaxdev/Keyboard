@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Tampilan keyboard: 4 baris tombol.
-     Setiap baris = LinearLayout horizontal, tombol dibagi rata pakai weight.
-     Tombol huruf punya tag 1 huruf (dibaca service), tombol khusus punya id. -->
+<!-- Halaman huruf ala iPhone: background abu terang, tombol putih/abu.
+     Tombol dikenali service lewat tag (huruf = tag 1 huruf). -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="#222222">
+    android:background="#D1D4DA"
+    android:padding="3dp">
 
     <!-- Baris 1 -->
     <LinearLayout
@@ -14,16 +14,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="q" android:tag="q" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="w" android:tag="w" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="e" android:tag="e" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="r" android:tag="r" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="t" android:tag="t" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="y" android:tag="y" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="u" android:tag="u" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="i" android:tag="i" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="o" android:tag="o" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="p" android:tag="p" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="q" android:tag="q" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="w" android:tag="w" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="e" android:tag="e" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="r" android:tag="r" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="t" android:tag="t" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="y" android:tag="y" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="u" android:tag="u" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="i" android:tag="i" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="o" android:tag="o" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="p" android:tag="p" />
     </LinearLayout>
 
     <!-- Baris 2 -->
@@ -32,15 +32,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="a" android:tag="a" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="s" android:tag="s" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="d" android:tag="d" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="f" android:tag="f" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="g" android:tag="g" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="h" android:tag="h" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="j" android:tag="j" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="k" android:tag="k" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="l" android:tag="l" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="a" android:tag="a" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="s" android:tag="s" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="d" android:tag="d" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="f" android:tag="f" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="g" android:tag="g" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="h" android:tag="h" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="j" android:tag="j" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="k" android:tag="k" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="l" android:tag="l" />
     </LinearLayout>
 
     <!-- Baris 3: shift - huruf - hapus -->
@@ -49,51 +49,25 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_shift"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:minHeight="56dp"
-            android:text="shift" />
-
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="z" android:tag="z" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="x" android:tag="x" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="c" android:tag="c" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="v" android:tag="v" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="b" android:tag="b" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="n" android:tag="n" />
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="56dp" android:text="m" android:tag="m" />
-
-        <Button
-            android:id="@+id/btn_backspace"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:minHeight="56dp"
-            android:text="hapus" />
+        <Button style="@style/KeyButton.Function" android:layout_weight="1.5" android:text="↑" android:tag="shift" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="z" android:tag="z" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="x" android:tag="x" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="c" android:tag="c" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="v" android:tag="v" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="b" android:tag="b" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="n" android:tag="n" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="m" android:tag="m" />
+        <Button style="@style/KeyButton.Function" android:layout_weight="1.5" android:text="⌫" android:tag="backspace" />
     </LinearLayout>
 
-    <!-- Baris 4: spasi - enter -->
+    <!-- Baris 4: angka - spasi - return -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_space"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:minHeight="56dp"
-            android:text="spasi" />
-
-        <Button
-            android:id="@+id/btn_enter"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:minHeight="56dp"
-            android:text="enter" />
+        <Button style="@style/KeyButton.Function" android:layout_weight="2" android:text="123" android:tag="to_symbols" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="6" android:text="" android:tag="space" />
+        <Button style="@style/KeyButton.Function" android:layout_weight="2" android:text="return" android:tag="enter" />
     </LinearLayout>
 </LinearLayout>

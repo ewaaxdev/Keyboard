@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Halaman angka/simbol (tombol 123): 0-9 dan simbol umum.
+     Tag 1 karakter langsung diketik, tag khusus diatur service. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#D1D4DA"
+    android:padding="3dp">
+
+    <!-- Baris 1: angka -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="1" android:tag="1" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="2" android:tag="2" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="3" android:tag="3" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="4" android:tag="4" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="5" android:tag="5" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="6" android:tag="6" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="7" android:tag="7" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="8" android:tag="8" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="9" android:tag="9" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="0" android:tag="0" />
+    </LinearLayout>
+
+    <!-- Baris 2: simbol umum -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="-" android:tag="-" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="/" android:tag="/" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text=":" android:tag=":" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text=";" android:tag=";" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="(" android:tag="(" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text=")" android:tag=")" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="$" android:tag="$" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="&amp;" android:tag="&amp;" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="&quot;" android:tag="&quot;" />
+    </LinearLayout>
+
+    <!-- Baris 3: halaman simbol 2 - titik/koma - hapus -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button style="@style/KeyButton.Function" android:layout_weight="1.5" android:text="#+=" android:tag="to_more" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="." android:tag="." />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="," android:tag="," />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="?" android:tag="?" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="!" android:tag="!" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="1" android:text="'" android:tag="'" />
+        <Button style="@style/KeyButton.Function" android:layout_weight="1.5" android:text="⌫" android:tag="backspace" />
+    </LinearLayout>
+
+    <!-- Baris 4: huruf - spasi - return -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button style="@style/KeyButton.Function" android:layout_weight="2" android:text="ABC" android:tag="to_letters" />
+        <Button style="@style/KeyButton.Letter" android:layout_weight="6" android:text="" android:tag="space" />
+        <Button style="@style/KeyButton.Function" android:layout_weight="2" android:text="return" android:tag="enter" />
+    </LinearLayout>
+</LinearLayout>
